@@ -8,17 +8,26 @@
   </head>
   <body>
     <h1>Where's Waldo?</h1>
-
+    <div id="result"></div>
     <button id="start-search">Click to begin the search for Waldo</button>
 
     <div id="board" class="hidden">
-      <p>Waldo: <img id="waldo-avatar" src="waldo-avatar.png" /></p>
-      <p>Wenda: <img id="wenda-avatar" src="wenda-avatar.png" /></p>
-      <p>Wizard: <img id="wizard-avatar" src="wizard-avatar.png" /></p>
+      <div id="my-stopwatch"></div>
+      <p>
+        Waldo: <img class="avatar" id="waldo-avatar" src="waldo-avatar.png" />
+      </p>
+      <p>
+        Wenda: <img class="avatar" id="wenda-avatar" src="wenda-avatar.png" />
+      </p>
+      <p>
+        Wizard:
+        <img class="avatar" id="wizard-avatar" src="wizard-avatar.png" />
+      </p>
 
       <img id="waldo-pic" src="waldo.png" />
     </div>
 
+    <script src="stopwatch.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

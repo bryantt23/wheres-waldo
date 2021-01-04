@@ -1,12 +1,21 @@
 const waldoPic = document.querySelector('#waldo-pic');
 const startSearch = document.querySelector('#start-search');
 const board = document.querySelector('#board');
+const waldoAvatar = document.querySelector('#waldo-avatar');
+const wendaAvatar = document.querySelector('#wenda-avatar');
+const wizardAvatar = document.querySelector('#wizard-avatar');
+const result = document.querySelector('#result');
+
+var elem = document.getElementById('my-stopwatch');
+var timer = new Stopwatch(elem, { delay: 10 });
 
 const foundCharacters = new Set();
 
 startSearch.addEventListener('click', () => {
   startSearch.classList.add('hidden');
   board.classList.remove('hidden');
+  // start the timer
+  timer.start();
 });
 
 // waldoPic.addEventListener('click', event => {
@@ -31,7 +40,22 @@ waldoPic.onclick = function clickEvent(e) {
   const character = getCharacter(x, y);
   if (character) {
     foundCharacters.add(character);
-    console.log(foundCharacters);
+    if (character === 'waldo') {
+      waldoAvatar.classList.add('disabled');
+    }
+    if (character === 'wenda') {
+      wendaAvatar.classList.add('disabled');
+    }
+    if (character === 'wizard') {
+      wizardAvatar.classList.add('disabled');
+    }
+    if (foundCharacters.size === 3) {
+      timer.stop();
+      const time = timer.getTime();
+      board.classList.add('disabled');
+      result.textContent =
+        'You found all of the characters in ' + time / 1000 + ' seconds';
+    }
   }
 };
 
@@ -93,14 +117,14 @@ click on IMG at pixel (1194.0028409957886,1245.8920288085938)
 */
 
 function getCharacter(px, py) {
-  if (between(px, 785, 805) && between(py, 820, 840)) {
-    return 'Waldo';
+  if (between(px, 775, 815) && between(py, 810, 850)) {
+    return 'waldo';
   }
-  if (between(px, 800, 820) && between(py, 665, 685)) {
-    return 'Wenda';
+  if (between(px, 790, 830) && between(py, 655, 695)) {
+    return 'wenda';
   }
-  if (between(px, 1190, 1210) && between(py, 850, 870)) {
-    return 'Wizard';
+  if (between(px, 1180, 1220) && between(py, 840, 880)) {
+    return 'wizard';
   }
 }
 
